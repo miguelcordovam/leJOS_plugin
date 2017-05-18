@@ -28,6 +28,10 @@
     <moduleBuilder builderClass = "org.lejos.wizard.LejosModuleBuilder" id = "LEJOS_STEP" order = "first" />
 
     <moduleType id = "LEJOS_TYPE" implementationClass="org.lejos.wizard.LejosModuleType" />
+
+    <projectConfigurable groupId="tools" displayName="LeJOS Plugin" id="preferences.LejosPreferencesConfigurable" instance="org.lejos.preferences.LejosPreferencesConfigurable" />
+    <projectService serviceInterface="org.lejos.preferences.LejosPreferencesConfig" serviceImplementation="org.lejos.preferences.LejosPreferencesConfig" />
+
   </extensions>
 
   <actions>
