@@ -14,6 +14,8 @@ public class LejosPreferencesGUI {
     private JPanel rootPanel;
     private JTextField ev3Home;
     private JButton browse;
+    private JLabel name;
+    private JTextField ipAddress;
 
 
     private LejosPreferencesConfig lejosConfig;
@@ -42,6 +44,7 @@ public class LejosPreferencesGUI {
 
     public void apply () {
         lejosConfig.setEv3Home(ev3Home.getText());
+        lejosConfig.setIpAddress(ipAddress.getText());
     }
 
     public JPanel getRootPanel() {
@@ -50,9 +53,10 @@ public class LejosPreferencesGUI {
 
     public void reset() {
         ev3Home.setText(lejosConfig.getEv3Home());
+        ipAddress.setText(lejosConfig.getIpAddress());
     }
 
     public boolean isModified() {
-        return !ev3Home.getText().equals(lejosConfig.getEv3Home());
+        return !ev3Home.getText().equals(lejosConfig.getEv3Home()) || !ipAddress.getText().equals(lejosConfig.getIpAddress());
     }
 }

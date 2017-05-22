@@ -35,7 +35,11 @@
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
+
+      <action id="createJar" class="org.lejos.util.CreateJarAction" text="Create Jar" >
+        <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      </action>
+
   </actions>
 
 </idea-plugin>

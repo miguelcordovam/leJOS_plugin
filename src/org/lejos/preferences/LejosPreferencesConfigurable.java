@@ -27,6 +27,12 @@ public class LejosPreferencesConfigurable implements SearchableConfigurable {
         return "preferences.LejosPreferencesConfigurable";
     }
 
+    @Nullable
+    @Override
+    public Runnable enableSearch(String s) {
+        return null;
+    }
+
     @Nls
     @Override
     public String getDisplayName() {
@@ -60,5 +66,10 @@ public class LejosPreferencesConfigurable implements SearchableConfigurable {
     @Override
     public void reset() {
         preferencesGUI.reset();
+    }
+
+    @Override
+    public void disposeUIResources() {
+
     }
 }

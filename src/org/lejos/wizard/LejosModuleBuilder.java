@@ -11,10 +11,17 @@ import com.intellij.openapi.util.InvalidDataException;
 import org.jdom.JDOMException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lejos.preferences.LejosPreferencesConfig;
 
 import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+
+import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class LejosModuleBuilder extends JavaModuleBuilder {
+
+    private LejosPreferencesConfig lejosConfig;
 
     @Override
     public ModuleType getModuleType() {
@@ -24,10 +31,25 @@ public class LejosModuleBuilder extends JavaModuleBuilder {
     @NotNull
     @Override
     public Module createAndCommitIfNeeded(@NotNull Project project, @Nullable ModifiableModuleModel model, boolean runFromProjectWizard) throws InvalidDataException, ConfigurationException, IOException, JDOMException, ModuleWithNameAlreadyExists {
-        String moduleLibraryPath = "C:\\Miguel\\leJOS EV3\\lib\\pc\\ev3tools.jar";
-        super.addModuleLibrary(moduleLibraryPath, "");
+        lejosConfig = LejosPreferencesConfig.getInstance(project);
+        Path lejosJarHome = Paths.get(lejosConfig.getEv3Home() + "\\lib");
+
+        Files.walkFileTree(lejosJarHome, new SimpleFileVisitor<Path>() {
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (file.toString().endsWith(".jar")) {
+                    addLibrary(file.toString());
+                }
+                return CONTINUE;
+            }
+        });
 
         return super.createAndCommitIfNeeded(project, model, runFromProjectWizard);
+    }
+
+    private void addLibrary (String library) {
+        super.addModuleLibrary(library, "");
     }
 
 }

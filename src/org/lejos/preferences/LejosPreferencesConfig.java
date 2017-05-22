@@ -17,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class LejosPreferencesConfig implements PersistentStateComponent<LejosPreferencesConfig> {
 
     public String ev3Home;
+    private String ipAddress;
 
     public LejosPreferencesConfig() {
         String ev3HomeEnv = System.getenv("EV3_HOME");
@@ -29,6 +30,14 @@ public class LejosPreferencesConfig implements PersistentStateComponent<LejosPre
 
     public void setEv3Home(String ev3Home) {
         this.ev3Home = ev3Home;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     @Nullable
