@@ -32,13 +32,10 @@
     <projectConfigurable groupId="tools" displayName="LeJOS Plugin" id="preferences.LejosPreferencesConfigurable" instance="org.lejos.preferences.LejosPreferencesConfigurable" />
     <projectService serviceInterface="org.lejos.preferences.LejosPreferencesConfig" serviceImplementation="org.lejos.preferences.LejosPreferencesConfig" />
 
+    <configurationType implementation="org.lejos.config.LejosRunConfigurationType"/>
   </extensions>
 
   <actions>
-
-      <action id="createJar" class="org.lejos.util.CreateJarAction" text="Create Jar" >
-        <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-      </action>
 
   </actions>
 
