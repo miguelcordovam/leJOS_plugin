@@ -1,17 +1,22 @@
 <idea-plugin version="2">
   <id>com.miguel.lejos</id>
-  <name>Lejos</name>
+  <name>LeJOS Plugin for Lego EV3 Mindstorms</name>
   <version>1.0</version>
-  <vendor email="miguelcordovadev@gmail.com" url="http://www.yourcompany.com" />
+  <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin" />
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Plugin to develop programs for Lego EV3 Mindstorms.<br>
+      This plugin is inspired by a similar plugin for Eclipse. <br><br>
+      Features: <br>
+      - Create a LeJOS project and write your code using LeJOS. <br>
+      - Create a Run Configuration for LeJOS.<br>
+      - Create jar, upload it to EV3 brick and run program.<br>
+
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      1.0 <br>
+      - Create jar, upload it to EV3 brick and run program.
     ]]>
   </change-notes>
 

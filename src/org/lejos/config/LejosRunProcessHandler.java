@@ -2,7 +2,6 @@ package org.lejos.config;
 
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.ui.ConsoleView;
-import com.intellij.execution.ui.ConsoleViewContentType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.ConnectException;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ import static com.intellij.execution.ui.ConsoleViewContentType.ERROR_OUTPUT;
 import static com.intellij.execution.ui.ConsoleViewContentType.NORMAL_OUTPUT;
 
 
-public class MyProcessHandler extends ProcessHandler {
+public class LejosRunProcessHandler extends ProcessHandler {
 
     private LejosPreferencesConfig lejosConfig;
 
@@ -97,8 +97,9 @@ public class MyProcessHandler extends ProcessHandler {
             console.print("Running program ...\n", NORMAL_OUTPUT);
 
             console.print("leJOS EV3 plugin launch complete\n", NORMAL_OUTPUT);
+        } catch (ConnectException e) {
+            console.print("Could not connect to brick. Check if brick is connected to your pc and IP address is correct", ERROR_OUTPUT);
         } catch (Exception e) {
-            e.printStackTrace();
             console.print("An error has occurred", ERROR_OUTPUT);
         }
     }

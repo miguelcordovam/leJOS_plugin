@@ -22,7 +22,7 @@ public class JarCreator {
         this.outputFile = outputFile;
         this.mainClass = mainClass;
         this.libs = libs;
-        if(this.debug) {
+        if (this.debug) {
 //            LeJOSEV3Util.message("Input Directory is " + this.inputDirectory);
         }
 
@@ -37,12 +37,12 @@ public class JarCreator {
         File file;
         Iterator libs = this.libs.iterator();
         while (libs.hasNext()) {
-            String lib = (String)libs.next();
+            String lib = (String) libs.next();
             file = new File(lib);
             this.classPath = this.classPath + " /home/lejos/lib/" + file.getName();
         }
 
-        if(this.debug) {
+        if (this.debug) {
 //            LeJOSEV3Util.message("Classpath is " + this.classPath);
         }
 
@@ -57,14 +57,14 @@ public class JarCreator {
 
         try {
 
-            if(source.isDirectory()) {
+            if (source.isDirectory()) {
                 String sourcePath = source.getPath().replace("\\", "/").replace(this.inputDirectory, "");
-                if(!sourcePath.isEmpty()) {
-                    if(!sourcePath.endsWith("/")) {
+                if (!sourcePath.isEmpty()) {
+                    if (!sourcePath.endsWith("/")) {
                         sourcePath = sourcePath + "/";
                     }
 
-                    if(this.debug) {
+                    if (this.debug) {
 //                        LeJOSEV3Util.message("Adding directory " + var12);
                     }
 
@@ -77,9 +77,9 @@ public class JarCreator {
                 File[] files = source.listFiles();
                 int numberOfFiles = files.length;
 
-                for(int i = 0; i < numberOfFiles; ++i) {
+                for (int i = 0; i < numberOfFiles; ++i) {
                     File file = files[i];
-                    if(this.debug) {
+                    if (this.debug) {
 //                        LeJOSEV3Util.message("Adding " + file.getAbsolutePath());
                     }
 
@@ -89,7 +89,7 @@ public class JarCreator {
             } else {
                 JarEntry entry = new JarEntry(source.getPath().replace("\\", "/").replace(this.inputDirectory + "/", ""));
                 entry.setTime(source.lastModified());
-                if(this.debug) {
+                if (this.debug) {
 //                    LeJOSEV3Util.message("Putting entry " + entry.getName());
                 }
 
@@ -97,9 +97,9 @@ public class JarCreator {
                 in = new BufferedInputStream(new FileInputStream(source));
                 byte[] buffer = new byte[1024];
 
-                while(true) {
+                while (true) {
                     int read = in.read(buffer);
-                    if(read == -1) {
+                    if (read == -1) {
                         outputStream.closeEntry();
                         return;
                     }
@@ -108,7 +108,7 @@ public class JarCreator {
                 }
             }
         } finally {
-            if(in != null) {
+            if (in != null) {
                 in.close();
             }
         }

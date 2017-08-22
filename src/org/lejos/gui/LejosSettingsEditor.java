@@ -1,4 +1,4 @@
-package org.lejos.config;
+package org.lejos.gui;
 
 import com.intellij.application.options.ModulesComboBox;
 import com.intellij.execution.configurations.ConfigurationUtil;
@@ -18,8 +18,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiMethodUtil;
 import com.intellij.ui.EditorTextFieldWithBrowseButton;
 import org.jetbrains.annotations.NotNull;
+import org.lejos.config.LejosRunConfiguration;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class LejosSettingsEditor extends SettingsEditor<LejosRunConfiguration> {
 

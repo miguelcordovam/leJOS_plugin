@@ -48,7 +48,7 @@ public class LejosModuleBuilder extends JavaModuleBuilder {
         return super.createAndCommitIfNeeded(project, model, runFromProjectWizard);
     }
 
-    private void addLibrary (String library) {
+    private void addLibrary(String library) {
         super.addModuleLibrary(library, "");
     }
 

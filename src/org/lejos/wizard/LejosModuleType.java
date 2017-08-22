@@ -2,7 +2,10 @@ package org.lejos.wizard;
 
 import com.intellij.openapi.module.JavaModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
+import com.intellij.openapi.util.IconLoader;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
 
 public class LejosModuleType extends JavaModuleType {
 
@@ -34,16 +37,15 @@ public class LejosModuleType extends JavaModuleType {
         return "LeJOS EV3 Project";
     }
 
-//    @Override
-//    public Icon getBigIcon() {
-//        return AllIcons.General.Information;
-//    }
-//
-//    @Override
-//    public Icon getNodeIcon(@Deprecated boolean b) {
-//        return AllIcons.General.Information;
-//    }
+    @Override
+    public Icon getBigIcon() {
+        return IconLoader.findIcon("/icons/ev3_32x32.png");
+    }
 
+    @Override
+    public Icon getNodeIcon(@Deprecated boolean b) {
+        return IconLoader.findIcon("/icons/ev3_16x16.png");
+    }
 
 
 }

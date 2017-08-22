@@ -16,10 +16,7 @@ public class LejosPreferencesGUI {
     private JButton browse;
     private JLabel name;
     private JTextField ipAddress;
-
-
     private LejosPreferencesConfig lejosConfig;
-
 
     public void createUI(Project project) {
         lejosConfig = LejosPreferencesConfig.getInstance(project);
