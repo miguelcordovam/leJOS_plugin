@@ -1,5 +1,5 @@
 <idea-plugin version="2">
-  <id>com.miguel.lejos</id>
+  <id>org.lejos.intellij.plugin</id>
   <name>LeJOS Plugin for Lego EV3 Mindstorms</name>
   <version>1.0</version>
   <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin" />
