@@ -31,8 +31,17 @@ public class LejosModuleBuilder extends JavaModuleBuilder {
     @NotNull
     @Override
     public Module createAndCommitIfNeeded(@NotNull Project project, @Nullable ModifiableModuleModel model, boolean runFromProjectWizard) throws InvalidDataException, ConfigurationException, IOException, JDOMException, ModuleWithNameAlreadyExists {
+        final String OS = System.getProperty("os.name").toLowerCase();
+        String suffix = null;
+        if (OS.contains("win")) {
+            // We are in a windows environment
+            suffix = "\\lib";
+        } else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix") || OS.contains("mac")) {
+            // We are in a Unix (including mac) environment
+            suffix = "/lib";
+        }
         lejosConfig = LejosPreferencesConfig.getInstance(project);
-        Path lejosJarHome = Paths.get(lejosConfig.getEv3Home() + "\\lib");
+        Path lejosJarHome = Paths.get(lejosConfig.getEv3Home() + suffix);
 
         Files.walkFileTree(lejosJarHome, new SimpleFileVisitor<Path>() {
 
