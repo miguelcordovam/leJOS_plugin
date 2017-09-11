@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.miguel.lejos</id>
   <name>LeJOS Plugin for Lego EV3 Mindstorms</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin" />
 
   <description><![CDATA[
@@ -12,10 +12,11 @@
       - Create a Run Configuration for LeJOS.<br>
       - Create jar, upload it to EV3 brick and run program.<br>
 
+      Fixed by Justin Tremblay to work in UNIX-like environments (2017-09)
     ]]></description>
 
   <change-notes><![CDATA[
-      1.0 <br>
+      1.1 <br>
       - Create jar, upload it to EV3 brick and run program.
     ]]>
   </change-notes>
