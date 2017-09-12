@@ -19,6 +19,7 @@
   <change-notes><![CDATA[
       1.1 <br>
       - Adding support to UNIX-like environments (Thanks to Justin Tremblay)
+      - Adding default value to ip address or brick name.
 
       1.0 <br>
       - Create jar, upload it to EV3 brick and run program.
