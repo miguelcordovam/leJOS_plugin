@@ -22,6 +22,7 @@ public class LejosPreferencesConfig implements PersistentStateComponent<LejosPre
     public LejosPreferencesConfig() {
         String ev3HomeEnv = System.getenv("EV3_HOME");
         ev3Home = ev3HomeEnv != null ? ev3HomeEnv : "";
+        ipAddress = "10.0.1.1";
     }
 
     public String getEv3Home() {

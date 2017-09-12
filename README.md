@@ -2,28 +2,16 @@
 
 **Author:** Miguel Cordova, miguelcordovadev@gmail.com
 
-**Original repo:** https://github.com/miguelcordovam/leJOS\_plugin
+## Setup instructions
 
-**License:** Refer the the original repo
+1. Install plugin and restart IDE.
+2. Create a lejOS project.
+3. Go to File > Settings > Tools > LejOS Plugin
+4. Set EV3_HOME and brick's name (Default is 10.0.1.1).
+5. Write code to your EV3
+6. Create a run configuration
+7. Enjoy your robot!
 
-This is a version with added support for multiple OSes (*nix, Windows)
+## Projects with EV3 Lego Mindstorms
 
-## Build and setup instructions
-
-### Build
-
-1. Clone the repo into your prefered directory.
-2. In IntelliJ, create a new project, selecting IntelliJ Platform Plugin as the project type.
-3. In the Build tab, build the project (just in case).
-4. In the Build tab again, click "Prepare Plugin Module '...' For Deployment".
-
-This will output a .jar file in your project folder, that's the plugin
-
-### Setup (Linux)
-
-1. Hit ctrl+alt+s, go into plugins and click "install plugin from disk..."
-2. Navigate to the .jar you just created and install it.
-3. Restart IntelliJ
-4. Hit ctrl+alt+s again, go into tools>lejOS Plugin and set the path to the lejOS directory (downloaded separately)
-
-At this point you should be good to go!
+ https://www.youtube.com/channel/UCYvHuR6MoN7LXsLs2T0-siw

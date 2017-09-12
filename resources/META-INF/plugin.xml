@@ -7,16 +7,20 @@
   <description><![CDATA[
       Plugin to develop programs for Lego EV3 Mindstorms.<br>
       This plugin is inspired by a similar plugin for Eclipse. <br><br>
+      Works on Windows and UNIX-like environments. <br><br>
+
       Features: <br>
       - Create a LeJOS project and write your code using LeJOS. <br>
       - Create a Run Configuration for LeJOS.<br>
       - Create jar, upload it to EV3 brick and run program.<br>
 
-      Fixed by Justin Tremblay to work in UNIX-like environments (2017-09)
     ]]></description>
 
   <change-notes><![CDATA[
       1.1 <br>
+      - Adding support to UNIX-like environments (Thanks to Justin Tremblay)
+
+      1.0 <br>
       - Create jar, upload it to EV3 brick and run program.
     ]]>
   </change-notes>
