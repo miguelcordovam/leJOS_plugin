@@ -22,10 +22,6 @@ public class JarCreator {
         this.outputFile = outputFile;
         this.mainClass = mainClass;
         this.libs = libs;
-        if (this.debug) {
-//            LeJOSEV3Util.message("Input Directory is " + this.inputDirectory);
-        }
-
     }
 
     public void run() throws IOException {
@@ -40,10 +36,6 @@ public class JarCreator {
             String lib = (String) libs.next();
             file = new File(lib);
             this.classPath = this.classPath + " /home/lejos/lib/" + file.getName();
-        }
-
-        if (this.debug) {
-//            LeJOSEV3Util.message("Classpath is " + this.classPath);
         }
 
         attributes.put(Attributes.Name.CLASS_PATH, this.classPath);
@@ -64,10 +56,6 @@ public class JarCreator {
                         sourcePath = sourcePath + "/";
                     }
 
-                    if (this.debug) {
-//                        LeJOSEV3Util.message("Adding directory " + var12);
-                    }
-
                     JarEntry jarEntry = new JarEntry(sourcePath);
                     jarEntry.setTime(source.lastModified());
                     outputStream.putNextEntry(jarEntry);
@@ -79,19 +67,12 @@ public class JarCreator {
 
                 for (int i = 0; i < numberOfFiles; ++i) {
                     File file = files[i];
-                    if (this.debug) {
-//                        LeJOSEV3Util.message("Adding " + file.getAbsolutePath());
-                    }
-
                     this.add(file, outputStream);
                 }
 
             } else {
                 JarEntry entry = new JarEntry(source.getPath().replace("\\", "/").replace(this.inputDirectory + "/", ""));
                 entry.setTime(source.lastModified());
-                if (this.debug) {
-//                    LeJOSEV3Util.message("Putting entry " + entry.getName());
-                }
 
                 outputStream.putNextEntry(entry);
                 in = new BufferedInputStream(new FileInputStream(source));

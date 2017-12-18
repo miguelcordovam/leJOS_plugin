@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.lejos.intellij.plugin</id>
   <name>LeJOS Plugin for Lego EV3 Mindstorms</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin" />
 
   <description><![CDATA[
@@ -17,12 +17,15 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      1.2 <br>
+      - End process after running jar. <br>
+
       1.1 <br>
-      - Adding support to UNIX-like environments (Thanks to Justin Tremblay)
-      - Adding default value to ip address or brick name.
+      - Adding support to UNIX-like environments (Thanks to Justin Tremblay) <br>
+      - Adding default value to ip address or brick name. <br><br>
 
       1.0 <br>
-      - Create jar, upload it to EV3 brick and run program.
+      - Create jar, upload it to EV3 brick and run program. <br>
     ]]>
   </change-notes>
 

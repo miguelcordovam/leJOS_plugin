@@ -32,12 +32,10 @@ public class LejosRunProcessHandler extends ProcessHandler {
 
     @Override
     protected void destroyProcessImpl() {
-
     }
 
     @Override
     protected void detachProcessImpl() {
-
     }
 
     @Override
@@ -51,7 +49,7 @@ public class LejosRunProcessHandler extends ProcessHandler {
         return null;
     }
 
-    public void start (ConsoleView console, Project project, String mainClass) {
+    public void run(ConsoleView console, Project project, String mainClass) {
 
         String basePath = project.getBasePath();
         Module[] modules = ModuleManager.getInstance(project).getModules();
@@ -64,21 +62,21 @@ public class LejosRunProcessHandler extends ProcessHandler {
         try {
             Files.deleteIfExists(Paths.get(basePath + "/" + jarName));
         } catch (IOException e) {
-
+            console.print("Could not delete jar file", NORMAL_OUTPUT);
         }
 
-        JarCreator jarCreator = new JarCreator(compilerOutputPath.getCanonicalPath(), basePath + "/" + jarName , mainClass, new ArrayList<>());
+        JarCreator jarCreator = new JarCreator(compilerOutputPath.getCanonicalPath(), basePath + "/" + jarName, mainClass, new ArrayList<>());
 
         try {
-            jarCreator.run();
-            console.print("Jar file has been created successfully\n", NORMAL_OUTPUT);
-
             lejosConfig = LejosPreferencesConfig.getInstance(project);
             RMIMenu rmiMenu = (RMIMenu) Naming.lookup("//" + lejosConfig.getIpAddress() + "/RemoteMenu");
 
+            jarCreator.run();
+            console.print("Jar file has been created successfully\n", NORMAL_OUTPUT);
+
             File file = new File(basePath + "/" + modules[0].getName() + ".jar");
             FileInputStream inputStream = new FileInputStream(file);
-            byte[] bytes = new byte[(int)file.length()];
+            byte[] bytes = new byte[(int) file.length()];
             inputStream.read(bytes);
             inputStream.close();
 
@@ -97,10 +95,13 @@ public class LejosRunProcessHandler extends ProcessHandler {
             console.print("Running program ...\n", NORMAL_OUTPUT);
 
             console.print("leJOS EV3 plugin launch complete\n", NORMAL_OUTPUT);
+
         } catch (ConnectException e) {
             console.print("Could not connect to brick. Check if brick is connected to your pc and IP address is correct", ERROR_OUTPUT);
         } catch (Exception e) {
             console.print("An error has occurred", ERROR_OUTPUT);
+        } finally {
+            destroyProcess();
         }
     }
 }
