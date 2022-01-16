@@ -19,29 +19,6 @@ public class LejosRunConfigurationType extends ApplicationConfigurationType {
     @NonNls
     public static final String ID = "LejosRunConfigurationType";
 
-    private final ConfigurationFactory lejosRunConfigurationFactory;
-
-    public LejosRunConfigurationType() {
-        lejosRunConfigurationFactory = new ConfigurationFactoryEx(this) {
-
-            @Override
-            public Icon getIcon(@NotNull RunConfiguration configuration) {
-                return LejosRunConfigurationType.this.getIcon();
-            }
-
-            @NotNull
-            @Override
-            public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
-                return new LejosRunConfiguration(getDisplayName(), project, this);
-            }
-
-            @Override
-            public void onNewConfigurationCreated(@NotNull RunConfiguration configuration) {
-                ((ModuleBasedConfiguration)configuration).onNewConfigurationCreated();
-            }
-        };
-    }
-
 
     @Override
     public String getDisplayName() {
@@ -66,6 +43,6 @@ public class LejosRunConfigurationType extends ApplicationConfigurationType {
 
     @Override
     public ConfigurationFactory[] getConfigurationFactories() {
-        return new ConfigurationFactory[]{lejosRunConfigurationFactory};
+        return new ConfigurationFactory[]{new LejosConfigurationFactory(this)};
     }
 }
