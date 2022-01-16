@@ -102,6 +102,8 @@ public class LejosRunProcessHandler extends ProcessHandler {
             console.print("An error has occurred", ERROR_OUTPUT);
         } finally {
             destroyProcess();
+            notifyProcessDetached();
+            notifyProcessTerminated(0);
         }
     }
 }

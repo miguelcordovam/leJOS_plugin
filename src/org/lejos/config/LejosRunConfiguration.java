@@ -5,12 +5,12 @@ import com.intellij.execution.ExecutionException;
 import com.intellij.execution.ExecutionResult;
 import com.intellij.execution.Executor;
 import com.intellij.execution.application.ApplicationConfiguration;
-import com.intellij.execution.configurations.ConfigurationFactory;
-import com.intellij.execution.configurations.JavaParameters;
-import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.*;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
+import com.intellij.execution.process.OSProcessHandler;
 import com.intellij.execution.process.ProcessHandler;
+import com.intellij.execution.process.ProcessHandlerFactory;
+import com.intellij.execution.process.ProcessTerminatedListener;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.ProgramRunner;
 import com.intellij.execution.ui.ConsoleView;
@@ -37,7 +37,6 @@ public class LejosRunConfiguration extends ApplicationConfiguration {
 
     @Override
     public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment env) throws ExecutionException {
-
         return new JavaApplicationCommandLineState<LejosRunConfiguration>(LejosRunConfiguration.this, env) {
 
             @Nullable
@@ -53,6 +52,7 @@ public class LejosRunConfiguration extends ApplicationConfiguration {
                 final LejosRunProcessHandler processHandler = new LejosRunProcessHandler();
                 final ConsoleView console = createConsole(executor, processHandler);
                 processHandler.run(console, myProject, LejosRunConfiguration.this.MAIN_CLASS_NAME);
+                console.attachToProcess(processHandler);
                 return new DefaultExecutionResult(console, processHandler, createActions(console, processHandler, executor));
             }
 
