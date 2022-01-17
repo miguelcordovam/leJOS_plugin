@@ -1,8 +1,8 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>org.lejos.intellij.plugin</id>
-  <name>LeJOS Plugin for Lego EV3 Mindstorms</name>
-  <version>1.2</version>
-  <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin" />
+  <name>LeJOS Support for Lego EV3 Mindstorms</name>
+  <version>1.3</version>
+  <vendor email="miguelcordovadev@gmail.com" url="https://github.com/miguelcordovam/leJOS_plugin">Miguel Cordovam</vendor>
 
   <description><![CDATA[
       Plugin to develop programs for Lego EV3 Mindstorms.<br>
@@ -13,10 +13,17 @@
       - Create a LeJOS project and write your code using LeJOS. <br>
       - Create a Run Configuration for LeJOS.<br>
       - Create jar, upload it to EV3 brick and run program.<br>
+      - Kotlin support. (see GitHub Readme)<br>
 
     ]]></description>
 
   <change-notes><![CDATA[
+      1.4 <br>
+      - Added Kotlin support. <br>
+
+      1.3 <br>
+      - Fixed Run error. <br>
+
       1.2 <br>
       - End process after running jar. <br>
 
@@ -29,14 +36,12 @@
     ]]>
   </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
   <idea-version since-build="145.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+       on how to target different products
+  <depends>com.intellij.modules.platform</depends>-->
 
   <extensions defaultExtensionNs="com.intellij">
     <moduleBuilder builderClass = "org.lejos.wizard.LejosModuleBuilder" id = "LEJOS_STEP" order = "first" />
@@ -44,13 +49,13 @@
     <moduleType id = "LEJOS_TYPE" implementationClass="org.lejos.wizard.LejosModuleType" />
 
     <projectConfigurable groupId="tools" displayName="LeJOS Plugin" id="preferences.LejosPreferencesConfigurable" instance="org.lejos.preferences.LejosPreferencesConfigurable" />
-    <projectService serviceInterface="org.lejos.preferences.LejosPreferencesConfig" serviceImplementation="org.lejos.preferences.LejosPreferencesConfig" />
+    <projectService serviceImplementation="org.lejos.preferences.LejosPreferencesConfig" />
 
     <configurationType implementation="org.lejos.config.LejosRunConfigurationType"/>
   </extensions>
 
   <actions>
-
+    <!-- Add your actions here -->
   </actions>
 
 </idea-plugin>

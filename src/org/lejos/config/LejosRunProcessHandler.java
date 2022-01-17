@@ -71,7 +71,12 @@ public class LejosRunProcessHandler extends ProcessHandler {
             lejosConfig = LejosPreferencesConfig.getInstance(project);
             RMIMenu rmiMenu = (RMIMenu) Naming.lookup("//" + lejosConfig.getIpAddress() + "/RemoteMenu");
 
-            jarCreator.run();
+            String withOrWithoutKotlinSupportText = "with";
+            if(!lejosConfig.getSupportKotlin()){
+                withOrWithoutKotlinSupportText = "without";
+            }
+            console.print("Jar is being built " + withOrWithoutKotlinSupportText + " Kotlin support...\n", NORMAL_OUTPUT);
+            jarCreator.run(lejosConfig.getSupportKotlin());
             console.print("Jar file has been created successfully\n", NORMAL_OUTPUT);
 
             File file = new File(basePath + "/" + modules[0].getName() + ".jar");
@@ -102,6 +107,8 @@ public class LejosRunProcessHandler extends ProcessHandler {
             console.print("An error has occurred", ERROR_OUTPUT);
         } finally {
             destroyProcess();
+            notifyProcessDetached();
+            notifyProcessTerminated(0);
         }
     }
 }

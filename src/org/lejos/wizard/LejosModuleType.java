@@ -38,8 +38,8 @@ public class LejosModuleType extends JavaModuleType {
     }
 
     @Override
-    public Icon getBigIcon() {
-        return IconLoader.findIcon("/icons/ev3_32x32.png");
+    public @NotNull Icon getIcon() {
+        return IconLoader.findIcon("/icons/ev3_16x16.png");
     }
 
     @Override

@@ -4,14 +4,13 @@ import com.intellij.application.options.ModulesComboBox;
 import com.intellij.execution.configurations.ConfigurationUtil;
 import com.intellij.execution.ui.ClassBrowser;
 import com.intellij.execution.ui.ConfigurationModuleSelector;
+import com.intellij.ide.util.TreeClassChooserFactory;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.ComponentWithBrowseButton;
 import com.intellij.openapi.ui.LabeledComponent;
-import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.psi.JavaCodeFragment;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
@@ -19,9 +18,9 @@ import com.intellij.psi.util.PsiMethodUtil;
 import com.intellij.ui.EditorTextFieldWithBrowseButton;
 import org.jetbrains.annotations.NotNull;
 import org.lejos.config.LejosRunConfiguration;
+import org.lejos.preferences.LejosPreferencesConfig;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 public class LejosSettingsEditor extends SettingsEditor<LejosRunConfiguration> {
 
@@ -31,15 +30,21 @@ public class LejosSettingsEditor extends SettingsEditor<LejosRunConfiguration> {
     private LabeledComponent<EditorTextFieldWithBrowseButton> myMainClass;
     private JPanel myWholePanel;
     private LabeledComponent<ModulesComboBox> myModule;
+    private JCheckBox supportKotlinCheckBox;
 
     private Module myModuleContext;
+    private LejosPreferencesConfig lejosConfig;
 
     public LejosSettingsEditor(Project project) {
         this.myProject = project;
+        lejosConfig = LejosPreferencesConfig.getInstance(project);
         myModuleSelector = new ConfigurationModuleSelector(project, myModule.getComponent());
+        supportKotlinCheckBox.setSelected(lejosConfig.getSupportKotlin());
+        supportKotlinCheckBox.addChangeListener(e -> {
+            lejosConfig.setSupportKotlin(supportKotlinCheckBox.isSelected());
+        });
 
         ClassBrowser.createApplicationClassBrowser(project, myModuleSelector).setField(myMainClass.getComponent());
-        myModuleContext = myModuleSelector.getModule();
     }
 
     @Override

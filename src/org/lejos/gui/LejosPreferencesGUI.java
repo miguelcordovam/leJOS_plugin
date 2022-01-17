@@ -16,11 +16,14 @@ public class LejosPreferencesGUI {
     private JButton browse;
     private JLabel name;
     private JTextField ipAddress;
+    private JLabel supportKotlin;
+    private JCheckBox supportKotlinCheckbox;
     private LejosPreferencesConfig lejosConfig;
 
     public void createUI(Project project) {
         lejosConfig = LejosPreferencesConfig.getInstance(project);
         ev3Home.setText(lejosConfig.getEv3Home());
+        supportKotlinCheckbox.setSelected(lejosConfig.getSupportKotlin());
 
         browse.addActionListener(new ActionListener() {
             @Override
@@ -42,6 +45,7 @@ public class LejosPreferencesGUI {
     public void apply () {
         lejosConfig.setEv3Home(ev3Home.getText());
         lejosConfig.setIpAddress(ipAddress.getText());
+        lejosConfig.setSupportKotlin(supportKotlinCheckbox.isSelected());
     }
 
     public JPanel getRootPanel() {
@@ -51,9 +55,10 @@ public class LejosPreferencesGUI {
     public void reset() {
         ev3Home.setText(lejosConfig.getEv3Home());
         ipAddress.setText(lejosConfig.getIpAddress());
+        supportKotlinCheckbox.setSelected(lejosConfig.getSupportKotlin());
     }
 
     public boolean isModified() {
-        return !ev3Home.getText().equals(lejosConfig.getEv3Home()) || !ipAddress.getText().equals(lejosConfig.getIpAddress());
+        return !ev3Home.getText().equals(lejosConfig.getEv3Home()) || !ipAddress.getText().equals(lejosConfig.getIpAddress()) || supportKotlinCheckbox.isSelected() != lejosConfig.getSupportKotlin();
     }
 }

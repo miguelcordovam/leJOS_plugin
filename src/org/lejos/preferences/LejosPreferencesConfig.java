@@ -18,11 +18,13 @@ public class LejosPreferencesConfig implements PersistentStateComponent<LejosPre
 
     public String ev3Home;
     private String ipAddress;
+    private boolean supportKotlin;
 
     public LejosPreferencesConfig() {
         String ev3HomeEnv = System.getenv("EV3_HOME");
         ev3Home = ev3HomeEnv != null ? ev3HomeEnv : "";
         ipAddress = "10.0.1.1";
+        supportKotlin = false;
     }
 
     public String getEv3Home() {
@@ -39,6 +41,14 @@ public class LejosPreferencesConfig implements PersistentStateComponent<LejosPre
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public boolean getSupportKotlin() {
+        return supportKotlin;
+    }
+
+    public void setSupportKotlin(boolean supportKotlin) {
+        this.supportKotlin = supportKotlin;
     }
 
     @Nullable

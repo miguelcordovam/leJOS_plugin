@@ -24,7 +24,10 @@ public class JarCreator {
         this.libs = libs;
     }
 
-    public void run() throws IOException {
+    public void run(boolean withKotlinSupport) throws IOException {
+        if(withKotlinSupport){
+            classPath += " /home/root/lejos/lib/kotlin-reflect.jar /home/root/lejos/lib/kotlin-stdlib.jar /home/root/lejos/lib/kotlin-stdlib-jdk7.jar /home/root/lejos/lib/kotlin-stdlib-jdk8.jar /home/root/lejos/lib/kotlin-test.jar";
+        }
         Manifest manifest = new Manifest();
         Attributes attributes = manifest.getMainAttributes();
         attributes.put(Attributes.Name.MANIFEST_VERSION, "1.0");
@@ -48,7 +51,7 @@ public class JarCreator {
         BufferedInputStream in = null;
 
         try {
-
+            int numberOfFiles;
             if (source.isDirectory()) {
                 String sourcePath = source.getPath().replace("\\", "/").replace(this.inputDirectory, "");
                 if (!sourcePath.isEmpty()) {
@@ -63,9 +66,9 @@ public class JarCreator {
                 }
 
                 File[] files = source.listFiles();
-                int numberOfFiles = files.length;
+                numberOfFiles = files.length;
 
-                for (int i = 0; i < numberOfFiles; ++i) {
+                for(int i = 0; i < numberOfFiles; ++i) {
                     File file = files[i];
                     this.add(file, outputStream);
                 }
@@ -73,19 +76,18 @@ public class JarCreator {
             } else {
                 JarEntry entry = new JarEntry(source.getPath().replace("\\", "/").replace(this.inputDirectory + "/", ""));
                 entry.setTime(source.lastModified());
-
                 outputStream.putNextEntry(entry);
                 in = new BufferedInputStream(new FileInputStream(source));
                 byte[] buffer = new byte[1024];
 
-                while (true) {
-                    int read = in.read(buffer);
-                    if (read == -1) {
+                while(true) {
+                    numberOfFiles = in.read(buffer);
+                    if (numberOfFiles == -1) {
                         outputStream.closeEntry();
                         return;
                     }
 
-                    outputStream.write(buffer, 0, read);
+                    outputStream.write(buffer, 0, numberOfFiles);
                 }
             }
         } finally {
